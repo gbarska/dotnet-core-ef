@@ -17,6 +17,10 @@ namespace ProductCatalog.Controllers
 
         [Route("v1/categories")]
         [HttpGet]
+        [ResponseCache(Duration = 60)]
+        // Cache-control: public, max-age=60
+        //in the next 60 minutes after first request every new request that comes
+        // to the server goes back without checking the database
         public IEnumerable<Category> Get()
         {
             return _context.Categories.AsNoTracking().ToList();
@@ -24,9 +28,12 @@ namespace ProductCatalog.Controllers
 
         [Route("v1/categories/{id}")]
         [HttpGet]
+        [ResponseCache(Location = ResponseCacheLocation.Client, Duration = 60)]
+        //in this case the request won't get to the server 
+        //because the data is cached in the client
         public Category Get(int id)
         {
-            return _context.Categories.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+           return _context.Categories.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
         }
 
         [Route("v1/categories/{id}/products")]

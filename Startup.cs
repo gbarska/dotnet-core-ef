@@ -14,11 +14,14 @@ namespace ProductCatalog
         {
             services.AddMvc();
 
+            services.AddResponseCompression();
+
             //cria apenas uma instancia
             services.AddScoped<StoreDataContext, StoreDataContext>();
             services.AddTransient<ProductRepository, ProductRepository>();
             //criar varias intancias
             // services.AddTransient<StoreDataContext,StoreDataContext>();
+
         }
        
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -27,8 +30,9 @@ namespace ProductCatalog
             {
                 app.UseDeveloperExceptionPage();
             }
-
+           
             app.UseMvc();
+            app.UseResponseCompression();
         }
     }
 }
