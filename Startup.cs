@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using ProductCatalog.Data;
 using ProductCatalog.Models;
+using ProductCatalog.Repositories;
 
 namespace ProductCatalog
 {
@@ -15,6 +16,7 @@ namespace ProductCatalog
 
             //cria apenas uma instancia
             services.AddScoped<StoreDataContext, StoreDataContext>();
+            services.AddTransient<ProductRepository, ProductRepository>();
             //criar varias intancias
             // services.AddTransient<StoreDataContext,StoreDataContext>();
         }
