@@ -1,6 +1,6 @@
 namespace ProductCatalog.ViewModels.ProductViewModels
 {
-    public class ListProductViewModels
+    public class ListProductViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
